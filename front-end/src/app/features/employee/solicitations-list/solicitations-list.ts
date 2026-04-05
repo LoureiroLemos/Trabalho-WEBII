@@ -43,6 +43,7 @@ export class SolicitationsListComponent implements OnInit {
   filterMode: FilterMode = 'ALL';
   periodStart = '';
   periodEnd = '';
+  periodError = '';
   requests: Solicitation[] = [];
   currentEmployeeId = 0;
 
@@ -53,6 +54,7 @@ export class SolicitationsListComponent implements OnInit {
   }
 
   applyFilter(): void {
+    this.periodError = '';
     const empId = this.currentEmployeeId;
     let filtered = this.storageService.getRequests().filter(r => {
       if (r.status === RequestStatus.REDIRECTED) {
@@ -65,6 +67,11 @@ export class SolicitationsListComponent implements OnInit {
       const today = new Date().toDateString();
       filtered = filtered.filter(r => new Date(r.openedAt).toDateString() === today);
     } else if (this.filterMode === 'PERIOD' && this.periodStart && this.periodEnd) {
+      if (this.periodStart > this.periodEnd) {
+        this.periodError = 'Data inicial não pode ser maior que a data final.';
+        this.requests = [];
+        return;
+      }
       const start = new Date(this.periodStart + 'T00:00:00');
       const end   = new Date(this.periodEnd   + 'T23:59:59');
       filtered = filtered.filter(r => {

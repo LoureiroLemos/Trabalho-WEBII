@@ -17,6 +17,7 @@
               <input type="date" class="form-control" [(ngModel)]="endDate">
             </div>
           </div>
+          <div *ngIf="periodError" class="text-danger small mb-2">{{ periodError }}</div>
           <button class="btn btn-outline-primary w-100" (click)="exportPeriod()">
             <i class="bi bi-file-earmark-pdf me-2"></i>Gerar PDF por Período
           </button>

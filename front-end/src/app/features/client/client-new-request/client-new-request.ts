@@ -43,14 +43,18 @@ export class ClientNewRequest implements OnInit {
   onSubmit(): void {
     const user = this.authService.getLoggedInUser();
     if (!user) return;
+    if (!this.newRequest.category) return;
 
     const dataAtual = new Date().toISOString();
+    const selectedCategory = this.newRequest.category;
 
     this.storageService.saveRequest({
       clientId: user.id,
       clientName: user.name,
       openedAt: dataAtual,
       equipmentDescription: this.newRequest.equipmentDescription.trim(),
+      categoryId: selectedCategory.id,
+      categoryName: selectedCategory.name,
       defectDescription: this.newRequest.defectDescription.trim(),
       status: RequestStatus.OPEN,
       history: [
