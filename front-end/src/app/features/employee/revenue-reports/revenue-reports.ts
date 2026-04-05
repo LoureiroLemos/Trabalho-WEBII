@@ -14,8 +14,14 @@ export class RevenueReportsComponent {
 
   startDate: string = '';
   endDate: string = '';
+  periodError = '';
 
   exportPeriod() {
+    this.periodError = '';
+    if (this.startDate && this.endDate && this.startDate > this.endDate) {
+      this.periodError = 'Data inicial não pode ser maior que a data final.';
+      return;
+    }
     this.reportService.generateRevenueByPeriodPDF(this.startDate, this.endDate);
   }
 

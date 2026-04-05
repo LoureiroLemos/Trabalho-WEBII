@@ -8,6 +8,7 @@ import { noAuthGuard } from './features/authentication/guards/no.auth-guard';
 import { ClientNewRequest } from './features/client/client-new-request/client-new-request';
 import { SolicitationsListComponent } from './features/employee/solicitations-list/solicitations-list';
 import { RevenueReportsComponent } from './features/employee/revenue-reports/revenue-reports';
+import { EmployeeManagementComponent } from './features/employee/employee-management/employee-management';
 
 export const routes: Routes = [
   { path: 'login',                  component: LoginComponent,             canActivate: [noAuthGuard] },
@@ -15,6 +16,7 @@ export const routes: Routes = [
   { path: 'employee',               component: Employee,                   canActivate: [authGuard]   },
   { path: 'employee/solicitations', component: SolicitationsListComponent, canActivate: [authGuard]   },
   { path: 'employee/reports',       component: RevenueReportsComponent,    canActivate: [authGuard]   },
+  { path: 'employee/staff',         component: EmployeeManagementComponent, canActivate: [authGuard]   },
   { path: 'client',                 component: ClientHomeComponent,        canActivate: [authGuard]   },
   { path: 'client/new-request',     component: ClientNewRequest,           canActivate: [authGuard]   },
   { path: '',                       redirectTo: '/login',                  pathMatch: 'full'          },

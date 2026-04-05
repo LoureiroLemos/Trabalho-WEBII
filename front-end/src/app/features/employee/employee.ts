@@ -53,6 +53,10 @@ export class Employee implements OnInit {
     this.router.navigate(['/employee/solicitations']);
   }
 
+  goToStaff(): void {
+    this.router.navigate(['/employee/staff']);
+  }
+
   onSubmitQuote(request: Solicitation): void {
     // RF012: pass full client data to dialog
     const allUsers = this.authService.getAllUsers();

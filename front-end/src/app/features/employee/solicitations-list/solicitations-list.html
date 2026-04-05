@@ -51,6 +51,9 @@
                      [(ngModel)]="periodEnd" (change)="applyFilter()" />
             </div>
           </div>
+          <div *ngIf="periodError" class="text-danger small mt-2">
+            {{ periodError }}
+          </div>
         </div>
       </div>
     </div>
